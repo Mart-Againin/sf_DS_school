@@ -4,7 +4,7 @@
 
 import numpy as np
 
-def random_predict_v2(number:int=1) -> int:
+def random_predict_v4(number:int=1) -> int:
     """Рандомно угадываем число
     
 
@@ -17,15 +17,22 @@ def random_predict_v2(number:int=1) -> int:
     
     
     count = 0
-    
+    start = 1  # присваиваем значение, соответствующее нижней границе диапазона поиска
+    stop = 101  # присваиваем значение, соответствующее верхней границе диапазона поиска +1
+
     while True:
         count += 1
-        predict_number = np.random.randint(1, 101) # Загадываем число
-        if predict_number == number:
-            break # выход из цикла, если угадали
+        guess = np.mean([start, stop]).astype(int)  # находим середину диапазона
+        if guess == number:
+            break
+        elif guess < number:
+            start = guess
+        else:
+            stop = guess
+            
     return (count)  
 
-print(f'Количество попыток: {random_predict_v2()}') 
+print(f'Количество попыток: {random_predict_v4()}') 
 
 def score_game(random_predict) -> int:
     """За какое количество попыток в среднем из 1000 подходов угадывает наш алгоритм
@@ -55,4 +62,4 @@ def score_game(random_predict) -> int:
 
 # RUN
 if __name__ == '__main__':  
-    score_game(random_predict_v2)
+    score_game(random_predict_v4)
