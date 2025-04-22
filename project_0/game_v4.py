@@ -17,14 +17,16 @@ def random_predict_v4(number:int=1) -> int:
     
     
     count = 0
-    start = 1  # присваиваем значение, соответствующее нижней границе диапазона поиска
-    stop = 101  # присваиваем значение, соответствующее верхней границе диапазона поиска +1
+    # присваиваем значение, соответствующее нижней и верхней границе диапазона поиска
+    start = 1  
+    stop = 101
 
     while True:
         count += 1
         guess = np.mean([start, stop]).astype(int)  # находим середину диапазона
         if guess == number:
             break
+        # Если не угадали, перезаписываем start или stop
         elif guess < number:
             start = guess
         else:

@@ -25,7 +25,7 @@ def random_predict(number:int=1) -> int:
         predict_number = np.random.randint(start, stop) # Загадываем число
         if predict_number == number:
             break # выход из цикла, если угадали
-        # Если не угадали, перезаписываем start и stop
+        # Если не угадали, перезаписываем start или stop
         elif predict_number < number:
             start = predict_number
         else:
